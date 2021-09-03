@@ -1,26 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-interface Address {
-  street: string;
-  suite: string;
-  city: string;
-  zipCode: string;
-  geo: { lat: number; lng: number };
-}
-interface Company {
-  name: string;
-  catchPhrase: string;
-  bs: string;
-}
 interface Users {
   id: number;
   name: string;
-  email: string;
-  address: Address;
-  phone: string;
-  website: string;
-  company: Company;
 }
 
 const Home = () => {
@@ -28,7 +11,7 @@ const Home = () => {
   console.log(data);
   useEffect(() => {
     axios
-      .get<Users[]>("https://jsonplaceholder.typicode.com/users")
+      .get<Users[]>("http://localhost:3006/users", { params: { id: 2 } })
       .then((res) => {
         setData(res.data);
       });

@@ -5,7 +5,7 @@ interface Users {
   id: number;
   name: string;
 }
-const Post = () => {
+const Put = () => {
   const [data, setData] = useState<Users[]>([]);
   const [userId, setUserId] = useState<string>("");
   const [userName, setUserName] = useState<string>("");
@@ -14,8 +14,7 @@ const Post = () => {
     event.preventDefault();
     console.log(event);
     axios
-      .post<Users[]>("http://localhost:3006/users", {
-        id: userId,
+      .put<Users[]>(`http://localhost:3006/users/${userId}`, {
         name: userName,
       })
       .then((res) => {
@@ -30,10 +29,10 @@ const Post = () => {
     <div>
       <form
         onSubmit={(event) => handleSubmit(event)}
-        style={{ display: "flex" }}
+        style={{ display: "flex", paddingTop: "1rem" }}
       >
         <div style={{ paddingLeft: "1rem" }}>
-          <label>userId: </label>
+          <label>User info Edit: </label>
           <input
             type="text"
             name="userId"
@@ -58,4 +57,4 @@ const Post = () => {
   );
 };
 
-export default Post;
+export default Put;
