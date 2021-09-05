@@ -10,11 +10,9 @@ const Home = () => {
   const [data, setData] = useState<Users[]>([]);
   console.log(data);
   useEffect(() => {
-    axios
-      .get<Users[]>("http://localhost:3006/users", { params: { id: 2 } })
-      .then((res) => {
-        setData(res.data);
-      });
+    axios.get<Users[]>("http://localhost:3006/users").then((res) => {
+      setData(res.data);
+    });
   }, []);
   return (
     <div>
